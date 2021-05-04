@@ -1,0 +1,104 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <input type="text"
+                        class="form-control"
+                        #txtTermino
+                        (keyup)="buscar(txtTermino.value)"
+                        placeholder="Buscar Hospital">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn fast"
+        *ngIf="cargando">
+    <div class="col-12">
+
+        <div class="alert alert-info text-center">
+            <h4 class="alert-heading">Cargando</h4>
+            <i class="fa fa-spin fa-refresh fa 2x"></i>
+            <p class="mb-0">Por favor espere</p>
+        </div>
+        
+    </div>
+</div>
+
+<div class="row"
+        *ngIf="!cargando">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-8">
+                        
+                        <h4 class="card-title">Hospital {{ hospitales.length }}</h4>
+                        <h6 class="card-subtitle"><code>Hospital</code>registrados en la aplicación.</h6>
+                        
+                    </div>
+
+                    <div class="col">
+                        <div class="text-right">
+                            <button class="btn btn-primary"
+                                    (click)="agregarHospital()">
+                            <i class="fa fa-hospital-o"></i>
+                                Crear Hospital
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table  class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="w100">Foto</th>
+                                <th>Nombre</th>
+                                <th class="w100 text-nowrap">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- TABLE ROWS -->
+                            <tr *ngFor="let hospital of hospitales">
+                                <td> 
+                                    <img [src]="hospital.img! | imagen:'hospitales'"
+                                        [alt]="hospital.nombre"
+                                        class="img-circle avatar">
+                                </td>
+                                <td>
+                                    <input type="text"
+                                            value="{{hospital.nombre}}"
+                                            class="form-control"
+                                            [(ngModel)]="hospital.nombre"
+                                            [disabled]="inputNombre"
+                                            placeholder="Nombre hospital...">
+                                </td>
+                                
+                                <td class="text-nowrap">
+                                    <a (click)="guardarCambios(hospital)" 
+                                        data-toggle="tooltip" 
+                                        class="cursor"
+                                        data-original-title="Editar"> 
+                                        <i class="fa fa-pencil text-inverse m-r-10 cursor"></i> 
+                                    </a>
+                                    <a (click)="eliminarHospital(hospital)" 
+                                        data-toggle="tooltip" 
+                                        data-original-title="Borrar"> 
+                                        <i class="fa fa-close text-danger cursor"></i> 
+                                    </a>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <!-- <button class="btn btn-secondary">Anterior</button>
+                &nbsp;
+                <button class="btn btn-secondary">Siguiente</button> -->
+            </div>
+        </div>
+    </div>
+</div>

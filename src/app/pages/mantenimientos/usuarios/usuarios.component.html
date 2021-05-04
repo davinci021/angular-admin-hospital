@@ -1,0 +1,105 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <input type="text"
+                        class="form-control"
+                        #txtTermino
+                        (keyup)="buscar(txtTermino.value)"
+                        placeholder="Buscar Usuario">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="cargando" class="row animated fadeIn fast">
+    <div class="col-12">
+
+        <div class="alert alert-info text-center">
+            <h4 class="alert-heading">Cargando</h4>
+            <i class="fa fa-spin fa-refresh fa 2x"></i>
+            <p class="mb-0">Por favor espere</p>
+        </div>
+        
+    </div>
+</div>
+
+<div class="row animated fadeIn fast" *ngIf="!cargando">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Usuarios</h4>
+                <h6 class="card-subtitle"><code>Usuarios</code>registrados en la aplicación.({{ totalUsuarios }}) - {{ desde }}-{{desde+5}} </h6>
+                
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>Correo</th>
+                                <th>Nombre</th>
+                                <th>Role</th>
+                                <th>Admin</th>
+                                <th class="text-nowrap">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- TABLE ROWS -->
+                            <tr *ngFor="let usuario of usuarios">
+                                <td><img [src]="usuario.imagenUrl"
+                                    class="img-circle avatar text-center"
+                                    ></td>
+                                <td>{{ usuario.email }}</td>
+                                <td>{{ usuario.nombre }}</td>
+                                <td class="btn-group bootstrap-select">
+                                    <select class="btn dropdown-toggle btn-info btn-outline-info"
+                                            [(ngModel)]="usuario.role"
+                                            (change)="cambiarRol(usuario)">
+                                        <option value="ADMIN_ROLE">Administrador</option>
+                                        <option value="USER_ROLE">Usuario</option>
+                                    </select>
+
+                                    <!-- 
+
+                <div class="btn-group bootstrap-select m-b-20 m-r-10">
+                    <button type="button" class="btn dropdown-toggle btn-info btn-outline-info" data-toggle="dropdown" role="button" title="Sugar, Spice and all things nice" aria-expanded="false"><span class="filter-option pull-left">Sugar, Spice and all things nice</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu" role="combobox" x-placement="bottom-start" style="max-height: 210px; overflow: hidden; min-height: 0px; position: absolute; transform: translate3d(0px, 36px, 0px); top: 0px; left: 0px; will-change: transform;"><ul class="dropdown-menu inner" role="listbox" aria-expanded="false" style="max-height: 192px; overflow-y: auto; min-height: 0px;"><li data-original-index="0" class="ms-hover"><a tabindex="0" class="" data-tokens="ketchup mustard" role="option" aria-disabled="false" aria-selected="false"><span class="text">Hot Dog, Fries and a Soda</span><span class="mdi mdi-check-circle check-mark"></span></a></li><li data-original-index="1" class="ms-hover"><a tabindex="0" class="" data-tokens="mustard" role="option" aria-disabled="false" aria-selected="false"><span class="text">Burger, Shake and a Smile</span><span class="mdi mdi-check-circle check-mark"></span></a></li><li data-original-index="2" class="ms-hover selected"><a tabindex="0" class="" data-tokens="frosting" role="option" aria-disabled="false" aria-selected="true"><span class="text">Sugar, Spice and all things nice</span><span class="mdi mdi-check-circle check-mark"></span></a></li></ul></div><select class="selectpicker m-b-20 m-r-10" data-style="btn-info btn-outline-info" tabindex="-98">
+                    <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
+                    <option data-tokens="mustard">Burger, Shake and a Smile</option>
+                    <option data-tokens="frosting">Sugar, Spice and all things nice</option>
+                </select></div>
+
+                                     -->
+
+
+
+                                </td>
+                                <td>
+                                    <span *ngIf="usuario.google" class="label label-danger w100 h50"><i class="fa fa-google"></i>oogle</span>
+                                    <span *ngIf="!usuario.google" class="label label-success w100 h20"><i class="fa fa-envelope"></i> Email</span>
+                                </td>
+                                
+                                <td class="text-nowrap text-center">
+                                    <a data-toggle="tooltip" 
+                                        class="cursor"
+                                        alt="eliminar"
+                                        (click)="borrarUsuario(usuario)"
+                                        data-original-title="Borrar">
+                                        <i class="fa fa-close text-danger"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <div *ngIf="txtTermino.value.length === 0">
+                    <button (click)="cambiarPagina(-5)" class="btn btn-secondary">Anterior</button>
+                    &nbsp;
+                    <button (click)="cambiarPagina(5)" class="btn btn-secondary">Siguiente</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

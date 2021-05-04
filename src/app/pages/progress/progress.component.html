@@ -1,0 +1,65 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <!--PROCESS 1-->
+                <h4 class="card-title">Striped Progress bar </h4>
+                <div class="progress m-t-20">
+                    <div class="progress-bar 
+                                active 
+                                bg-primary 
+                                progress-bar-striped"  
+                                [style.width]="getProgreso1"
+                                style="height:10px;" 
+                                role="progressbar"> 
+                            </div>
+                </div>      
+                <!--PROCESS 2-->
+                <h4 class="card-title">Striped Progress bar </h4>
+                <div class="progress m-t-20">
+                    <div class="progress-bar 
+                                active 
+                                bg-info 
+                                progress-bar-striped"  
+                                [style.width]="getProgreso2"
+                                style="height:10px;" 
+                                role="progressbar"> 
+                                <!--[style.width]="getPorcentaje"-->
+                    </div>
+                </div>                   
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                
+                <app-incrementador  (valorSalida)="progreso1 = $event " 
+                                    [valor]="progreso1">
+
+                </app-incrementador>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                
+                <app-incrementador (valorSalida)="progreso2 = $event " 
+                                    [valor]="progreso2"
+                                    [btnClass]="'btn btn-info'">
+                </app-incrementador>
+                
+            </div>
+        </div>
+    </div>
+
+
+</div>
+

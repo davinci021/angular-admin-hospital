@@ -1,0 +1,120 @@
+<div class="row animated fadeIn fast">
+    
+    <div class="col-md-6">
+
+        <div class="card">
+            <div class="card-body text-center">
+                <h4 class="card-title">Perfil</h4>
+                <h6 class="card-subtitle">Datos del usuario</h6>
+                <div class="m-t-30"> 
+                    <img *ngIf="!imgTemp" [src]="usuario.imagenUrl" 
+                            class="img-circle" 
+                            width="150" />
+                    <img *ngIf="imgTemp" [src]="imgTemp" class="img-circle" width="150">
+                    <h4 class="card-title m-t-10">{{ usuario.nombre }}</h4>
+                    <h6 class="card-subtitle">Desarrollador Fullstack</h6>
+                    <div class="row text-center justify-content-md-center">
+                        <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-people"></i> <font class="font-medium">254</font></a></div>
+                        <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-picture"></i> <font class="font-medium">54</font></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Modificar</h4>
+                <h6 class="card-subtitle">Datos del usuario</h6>
+                <!---------------- FORMULARIO ------------->
+                <form class="form p-t-20"
+                        (ngSubmit)="actualizarPerfil()"
+                        [formGroup]="perfilForm">
+                    <!-- NOMBRE -->
+                    <div class="form-group has-danger has-success">
+                        <label for="validationServer01">Nombre</label>
+                        <div class="input-group">
+                            <div class="input-group-addon "><i class="ti-user"></i></div>
+                            <input type="text" 
+                                    class="form-control" 
+                                    formControlName="nombre"
+                                    id="validationServer01" 
+                                    [readonly]="isReadOnlyNombre"
+                                    placeholder="Nombre">
+                                    
+                                    <button type="button" 
+                                        (click)="deshabilitar('nombre')" 
+                                        class="btn btn-default waves-effect input-group-addon">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                        </div>
+                        <small class="form-control-feedback"> 
+                            Aquí hay un error. 
+                        </small>
+                    </div>
+                    <!-- EMAIL -->
+                    <div class="form-group has-danger has-success">
+                        <label for="exampleInputEmail1">Correo</label>
+                        <div class="input-group">
+                            <div class="input-group-addon "><i class="ti-email"></i></div>
+                            <input type="email" 
+                                    class="form-control" 
+                                    [readonly]="isReadOnlyEmail"
+                                    id="exampleInputEmail1"
+                                    formControlName="email"
+                                    placeholder="Introducir correo">
+
+                                    <button type="button" 
+                                        (click)="deshabilitar('email')" 
+                                        class="btn btn-default waves-effect input-group-addon">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    
+                                    
+
+
+
+
+                        </div>
+                        <small class="form-control-feedback"> 
+                            Aquí hay un error.
+                        </small>
+                    </div>
+                    <!-- EMAIL -->
+                    
+                    <button class="btn btn-success btn-block waves-effect waves-light m-r-10" 
+                            type="submit"
+                            [disabled]="perfilForm.invalid">
+                        <i class="fa fa-save"></i>
+                        Actualizar Usuario
+                    </button>
+                  </form>
+                  <!---------------- FORMULARIO ------------->
+
+            </div>
+        </div>
+        
+
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Cambiar Imagen</h4>
+                <h6 class="card-subtitle">Imagen del usuario</h6>
+
+                <input type="file"
+                        (change)="cambiarImagen($event)">
+                <br>
+                <br>
+                <br>
+                <button class="btn btn-success waves-effect waves-light m-r-10" 
+                        [disabled]="!imagenSubir"
+                        (click)="subirImagen()"
+                        type="button">
+                    Subir Imagen</button>
+                    
+            </div>
+        </div>
+    </div>
+
+</div>

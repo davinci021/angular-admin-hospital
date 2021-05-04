@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+.fast{
+    -webkit-animation-duration:0.3s;
+    animation-duration:0.3ss;
+    -webkit-animation-fill-mode:both;
+    animation-fill-mode:both
+}
+
+#themecolors .selector, .cursor {
+    cursor: pointer;
+}
+
+.w100 {
+    width: 100px;
+}
+
+.w150{
+    width: 150px;
+}
+
+.h20{
+    height: 35px;
+    margin: 5px 5px 5px 5px;
+    padding: 5px 5px 5px 5px;
+}
+
+.avatar {
+    width: 65px;
+    height: 65px;
+}
